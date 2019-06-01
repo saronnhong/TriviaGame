@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <title>Pokemon Trivia</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>POKEMON Trivia</h1>
+            <h2 id="countDownTimer"></h2>
+            <p id="correctAnswers"></p>
+            <p id="incorrectAnswers"></p>
+            <p id="unAnswers"></p>
+
+            <form>
+                <p>Q: Why does Ash Ketchum choose Pikachu as his starting Pokemon></p>
+                <p id="A1">
+                    <ul class="answerClass">
+                        <input type="radio" name="Q1" value=1> Pikachu is his favorite pokemon<br>
+                        <input type="radio" name="Q1" value=2> He overslept<br>
+                        <input type="radio" name="Q1" value=3> Electric types have no weaknesses<br>
+                        <input type="radio" name="Q1" value=4> Pikachu is a cutie<br>
+                    </ul>
+                </p>
+                <p>Q: What city is Brock from?</p>
+                <p>
+                    <ul class="answerClass">
+                        <input type="radio" name="Q2" value=1> Pallet Town<br>
+                        <input type="radio" name="Q2" value=2> Cerulean City<br>
+                        <input type="radio" name="Q2" value=3> Saffron City<br>
+                        <input type="radio" name="Q2" value=4> Pewter City<br>
+                    </ul>
+                </p>
+                <p>Q: What type of Pokemon does Misty train?</p>
+                <p>
+                    <ul class="answerClass">
+                        <input type="radio" name="Q3" value=1> Water<br>
+                        <input type="radio" name="Q3" value=2> Grass<br>
+                        <input type="radio" name="Q3" value=3> Fire<br>
+                        <input type="radio" name="Q3" value=4> Ghost<br>
+                    </ul>
+                </p>
+                <p>Q: Psychic type Pokemon are weak to which type?</p>
+                <p>
+                    <ul class="answerClass">
+                        <input type="radio" name="Q4" value=1> Psychic<br>
+                        <input type="radio" name="Q4" value=2> Fighting<br>
+                        <input type="radio" name="Q4" value=3> Fire<br>
+                        <input type="radio" name="Q4" value=4> Ghost<br>
+                    </ul>
+                </p>
+                <p>Q: What special ability does Ditto have?</p>
+                <p>
+                    <ul class="answerClass">
+                        <input type="radio" name="Q5" value=1> Gust<br>
+                        <input type="radio" name="Q5" value=2> Transform<br>
+                        <input type="radio" name="Q5" value=3> Sleep<br>
+                        <input type="radio" name="Q5" value=4> Hydropump<br>
+                    </ul>
+                </p>
+                <p>Q: Bulbasaur evoles into?</p>
+                <p>
+                    <ul class="answerClass">
+                        <input type="radio" name="Q6" value=1> Bellossum<br>
+                        <input type="radio" name="Q6" value=2> Charmander<br>
+                        <input type="radio" name="Q6" value=3> Ivysaur<br>
+                        <input type="radio" name="Q6" value=4> Gloom<br>
+                    </ul>
+                </p>
+                <p>Q: Who is the sleeping Pokemon?</p>
+                <p>
+                    <ul class="answerClass">
+                        <input type="radio" name="Q7" value=1> Snorlax<br>
+                        <input type="radio" name="Q7" value=2> Dragonite<br>
+                        <input type="radio" name="Q7" value=3> Mew<br>
+                        <input type="radio" name="Q7" value=4> Articuno<br>
+                    </ul>
+                </p>
+                <p>Q: What pokemon is always paired up with Nurse Joy?</p>
+                <p>
+                    <ul class="answerClass">
+                        <input type="radio" name="Q8" value=1> Mr Mime<br>
+                        <input type="radio" name="Q8" value=2> Growlithe<br>
+                        <input type="radio" name="Q8" value=3> Pikachu<br>
+                        <input type="radio" name="Q8" value=4> Chansey<br>
+                    </ul>
+                </p>
+                <p>Q: What is the name of the sheep Pokemon</p>
+                <p>
+                    <ul class="answerClass">
+                        <input type="radio" name="Q9" value=1> Bidoof<br>
+                        <input type="radio" name="Q9" value=2> Feebass<br>
+                        <input type="radio" name="Q9" value=3> Sheep0<br>
+                        <input type="radio" name="Q9" value=4> Mareep<br>
+                    </ul>
+                </p>
+                <p>Q: How can you tell the difference between a male and female Pikachu?</p>
+                <p>
+                    <ul class="answerClass">
+                        <input type="radio" name="Q10" value=1> Size<br>
+                        <input type="radio" name="Q10" value=2> Tail<br>
+                        <input type="radio" name="Q10" value=3> Color<br>
+                        <input type="radio" name="Q10" value=4> Cheeks<br>
+
+                    </ul>
+                </p>
+                <input type="button" id="submit-button" value="Submit">
+            </form>
+            <a id="title_page">
+                <img src="assets/images/pokeball_trans.png" width="40%">
+                
+                <button type="button" id="startQuiz" class="btn btn-warning">Click to Begin</button>
+            </a>
+            <!-- <button >Click to Begin</button> -->
+        </div>
+    </div>
+    <script>
+        var time = 60;
+        var unanswerCount = 0;
+        var correctCount = 0
+
+        $(document).ready(function () {
+            // intervalId = setInterval(count, 1000);
+            // setTimeout(userTimeOut, 1000 * 200);
+            $("form").hide();
+
+
+
+            function count() {
+                time--;
+                //console.log("1: " + intervalId);
+                $("#countDownTimer").text(time);
+                if (time < 1) {
+                    clearInterval(intervalId);
+
+                }
+            }
+            function answerKey() {
+                if ($("input[name=Q1]:checked").val() === "2") {
+                    correctCount++;
+                }
+                if ($("input[name=Q2]:checked").val() === "4") {
+                    correctCount++;
+                }
+                if ($("input[name=Q3]:checked").val() === "1") {
+                    correctCount++;
+                }
+                if ($("input[name=Q4]:checked").val() === "4") {
+                    correctCount++;
+                }
+                if ($("input[name=Q5]:checked").val() === "2") {
+                    correctCount++;
+                }
+                if ($("input[name=Q6]:checked").val() === "3") {
+                    correctCount++;
+                }
+                if ($("input[name=Q7]:checked").val() === "1") {
+                    correctCount++;
+                }
+                if ($("input[name=Q8]:checked").val() === "4") {
+                    correctCount++;
+                }
+                if ($("input[name=Q9]:checked").val() === "4") {
+                    correctCount++;
+                }
+                if ($("input[name=Q10]:checked").val() === "2") {
+                    correctCount++;
+                }
+                return correctCount;
+            }
+
+            function unanswerKey() {
+                //check for unaswered questions
+                $('.answerClass').each(function () {
+                    if (!$(this).find('input').is(':checked')) {
+                        unanswerCount++;
+                    }
+
+                });
+                return unanswerCount;
+            }
+
+            function userTimeOut() {
+                answerKey();
+                unanswerKey();
+                var incorrectTotal = (10 - correctCount - unanswerCount);
+                //go to results page
+                $("form").hide();
+                $("#correctAnswers").html("Correct: " + correctCount);
+                $("#incorrectAnswers").html("Incorrect: " + incorrectTotal);
+                $("#unAnswers").html("Unanswered: " + unanswerCount);
+
+
+            }
+            $("#submit-button").on("click", function () {
+                clearInterval(intervalId);
+                $("#countDownTimer").hide();
+                answerKey();
+                unanswerKey();
+                var incorrectTotal = (10 - correctCount - unanswerCount);
+                //go to results page
+                $("form").hide();
+                $("#correctAnswers").html("Correct: " + correctCount);
+                $("#incorrectAnswers").html("Incorrect: " + incorrectTotal);
+                $("#unAnswers").html("Unanswered: " + unanswerCount);
+
+            });
+            $("#startQuiz").on("click", function () {
+                $("form").show();
+                $("#startQuiz").hide();
+                intervalId = setInterval(count, 1000);
+                setTimeout(userTimeOut, 1000 * 60);
+
+            });
+
+        });
+    </script>
+</body>
+
+</html>

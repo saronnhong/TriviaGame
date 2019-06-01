@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+    <title>Qs for Nadine</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>A Trivia Of Ice and Fire</h1>
+            <h2 id="countDownTimer"></h2>
+            <p id="failMessage">ghost</p>
+            <h3 id="question"></h3>
+            <p>
+                <button id="answer1"></button><br>
+                <button id="answer2"></button><br>
+                <button id="answer3"></button><br>
+                <button id="answer4"></button>
+            </p>
+        </div>
+    </div>
+    <script>
+        var time = 10;
+        var correct = 0;
+        var i = 0;
+        var intervalId;
+        var qResult=0;
+
+
+        $(document).ready(function () {
+            qResult=1;
+
+            var triviaQuestions = [
+                { question: "What color are Ghost's eyes?", answer1: "Blue", answer2: "Red", answer3: "Brown", answer4: "Green", correctAnswer: "Red" },
+                { question: "What is the name of Jon Snow's sword?", answer1: "Bear Claw", answer2: "Ice", answer3: "Oath Keeper", answer4: "Long Claw", correctAnswer: "Long Claw" },
+                { question: "Who was born at the Tower of Joy?", answer1: "Tyrion Lannister", answer2: "Jon Snow", answer3: "Eddard Stark", answer4: "Brienne of Tarth", correctAnswer: "Jon Snow" },
+                { question: "Where arrived in Westeros first?", answer1: "First Men", answer2: "White Walkers", answer3: "Children of the Forest", answer4: "Targaryen", correctAnswer: "Children of the Forest" },
+                { question: "Gendry is that bastard of which character?", answer1: "Jon Snow", answer2: "Eddard Stark", answer3: "The Mad King", answer4: "Robert Baratheon", correctAnswer: "Robert Baratheon" },
+                { question: "Who wrote the Song of Ice and Fire books?", answer1: "Samwell Tarly", answer2: "George RR Martin", answer3: "Maester Aemon", answer4: "Joe Hill", correctAnswer: "George RR Martin" },
+                { question: "Which is not one of the Direwolves of the Stark children?", answer1: "Fang", answer2: "Shaggy Dog", answer3: "Summer", answer4: "Nymeria", correctAnswer: "Fang" }
+            ];
+
+            $("#question").html(triviaQuestions[i].question);
+            $("#answer1").html(triviaQuestions[i].answer1);
+            $("#answer2").html(triviaQuestions[i].answer2);
+            $("#answer3").html(triviaQuestions[i].answer3);
+            $("#answer4").html(triviaQuestions[i].answer4);
+
+            //intervalId = setInterval(count, 1000);
+            //setTimeout(userTimeOut, 1000 * 10);
+
+            //console.log("3: " + intervalId);
+
+            function count() {
+                time--;
+                //console.log("1: " + intervalId);
+                $("#countDownTimer").text(time);
+                timeOutClearInt();
+            }
+
+            function timeOutClearInt() {
+                if (time < 1) {
+                    clearInterval(intervalId);
+                    console.log("Clear Interval: " + intervalId);
+                }
+            }
+
+            function userTimeOut() {
+                $("#failMessage").html("Time is UP! The correct answer is below.")
+                time = 6;
+                displayCorrectAnswer(i);
+                clearInterval(intervalId);
+                intervalId = setInterval(count, 1000);
+                console.log("userTimeOut");
+                setTimeout(nextFromTimeOut, 6000);
+
+
+
+            }
+            function nextFromTimeOut() {
+                //clearInterval(intervalId);
+                console.log("next from timeout");
+                //time = 10;
+                showHiddenItems();
+                i++;
+                nextQuestion(i);
+
+            }
+            function displayCorrectAnswer(i) {
+                $("#question").hide();
+                if (triviaQuestions[i].answer1 !== triviaQuestions[i].correctAnswer) {
+                    $("#answer1").hide();
+                }
+                if (triviaQuestions[i].answer2 !== triviaQuestions[i].correctAnswer) {
+                    $("#answer2").hide();
+                }
+                if (triviaQuestions[i].answer3 !== triviaQuestions[i].correctAnswer) {
+                    $("#answer3").hide();
+                }
+                if (triviaQuestions[i].answer4 !== triviaQuestions[i].correctAnswer) {
+                    $("#answer4").hide();
+                }
+            }
+            function showHiddenItems() {
+                $("#question").show();
+                $("#answer1").show();
+                $("#answer2").show();
+                $("#answer3").show();
+                $("#answer4").show();
+
+            }
+            function resultHandler(qResult) {
+
+                displayCorrectAnswer(i);
+                console.log(qResult);
+                if (qResult === 1) {
+                    $("#question").html("You have selected the wrong answer. The correct one is below.");
+                }
+                else if (qResult === 0) {
+                    //$("#failMessage").show();
+                    $("#failMessage").text("You got it RIGHT!");
+
+                    console.log("got here");
+
+                }
+                
+                nextQuestion(i);
+            }
+
+            function nextQuestion(i) {
+                time = 10;
+                clearInterval(intervalId);
+                intervalId = setInterval(count, 1000);
+                setTimeout(userTimeOut, 1000 * 10);
+
+                $("#failMessage").text("Ready...");
+                $("#question").html(triviaQuestions[i].question);
+                $("#answer1").html(triviaQuestions[i].answer1);
+                $("#answer2").html(triviaQuestions[i].answer2);
+                $("#answer3").html(triviaQuestions[i].answer3);
+                $("#answer4").html(triviaQuestions[i].answer4);
+
+                $("#answer1").on("click", function () {
+                    if (triviaQuestions[i].answer1 === triviaQuestions[i].correctAnswer) {
+                        alert("WRONG!");
+                        
+                    }
+                    else if ((triviaQuestions[i].answer1 !== triviaQuestions[i].correctAnswer)) {
+                        console.log("false 69");
+                        clearInterval(intervalId);
+                        
+                        console.log(qResult);
+                        resultHandler(qResult);
+
+
+                    }
+                });
+                $("#answer2").on("click", function () {
+                    if (triviaQuestions[i].answer2 === triviaQuestions[i].correctAnswer) {
+                        
+
+                    }
+                    else {
+                        
+
+
+                    }
+                });
+                $("#answer3").on("click", function () {
+                    if (triviaQuestions[i].answer3 === triviaQuestions[i].correctAnswer) {
+                        
+                    }
+                    else {
+                        
+
+
+                    }
+                });
+                $("#answer4").on("click", function () {
+                    if (triviaQuestions[i].answer4 === triviaQuestions[i].correctAnswer) {
+                        
+                    }
+                    else {
+                        
+
+
+                    }
+                });
+
+            }
+            nextQuestion(i);
+        });
+    </script>
+</body>
+
+</html>
