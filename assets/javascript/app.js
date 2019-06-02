@@ -1,7 +1,9 @@
 $(document).ready(function () {
     var time = 60;
     var unanswerCount = 0;
-    var correctCount = 0
+    var correctCount = 0;
+    var submitButtonCheck = 0;
+
     $("form").hide();
     function count() {
         time--;
@@ -55,14 +57,18 @@ $(document).ready(function () {
     }
 
     function userTimeOut() {
-        answerKey();
-        unanswerKey();
-        var incorrectTotal = (10 - correctCount - unanswerCount);
-        //go to results page
-        $("form").hide();
-        $("#correctAnswers").html("Correct: " + correctCount);
-        $("#incorrectAnswers").html("Incorrect: " + incorrectTotal);
-        $("#unAnswers").html("Unanswered: " + unanswerCount);
+        if (submitButtonCheck === 0) {
+            clearInterval(intervalId);
+            answerKey();
+            unanswerKey();
+            var incorrectTotal = (10 - correctCount - unanswerCount);
+            //go to results page
+            $("form").hide();
+            $("#countDownTimer").hide();
+            $("#correctAnswers").html("Correct: " + correctCount);
+            $("#incorrectAnswers").html("Incorrect: " + incorrectTotal);
+            $("#unAnswers").html("Unanswered: " + unanswerCount);
+        }
 
     }
     $("#submit-button").on("click", function () {
@@ -76,6 +82,7 @@ $(document).ready(function () {
         $("#correctAnswers").html("Correct: " + correctCount);
         $("#incorrectAnswers").html("Incorrect: " + incorrectTotal);
         $("#unAnswers").html("Unanswered: " + unanswerCount);
+        submitButtonCheck = 1;
 
     });
     $("#startQuiz").on("click", function () {
