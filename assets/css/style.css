@@ -7,15 +7,12 @@
     background-size: repeat;
     color: rgb(226, 220, 220);
     min-height: 600px;
-    font-size: 20px;
+    font-size: 18px;
     
 }
 button {
     padding: 50px;
-    margin-top: 20px;
-    /* width: 100%; */
-    
-    
+    margin-top: 20px; 
 }
 h1{
     text-align: center;
@@ -28,8 +25,8 @@ h2 {
 body {
     background-image: url("../images/kawaii-pokemon-wallpaper-14.jpg");
     background-size: repeat;
-    font-family: 'Hind Siliguri', sans-serif;
+    font-family: 'Domine', serif;
 }
 #title_page {
-    margin-left: 300px;
+    margin-left: 310px;
 }

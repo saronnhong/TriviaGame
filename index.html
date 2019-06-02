@@ -7,16 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Domine&display=swap" rel="stylesheet">
     <title>Pokemon Trivia</title>
 </head>
 
 <body>
+
+
     <div class="container">
         <div class="jumbotron">
             <h1>POKEMON Trivia</h1>
@@ -26,10 +29,10 @@
             <p id="unAnswers"></p>
 
             <form>
-                <p>Q: Why does Ash Ketchum choose Pikachu as his starting Pokemon></p>
+                <p>Q: Why does Ash Ketchum choose Pikachu as his starting Pokemon?</p>
                 <p id="A1">
                     <ul class="answerClass">
-                        <input type="radio" name="Q1" value=1> Pikachu is his favorite pokemon<br>
+                        <input type="radio" name="Q1" value=1> Pikachu is his favorite Pokemon<br>
                         <input type="radio" name="Q1" value=2> He overslept<br>
                         <input type="radio" name="Q1" value=3> Electric types have no weaknesses<br>
                         <input type="radio" name="Q1" value=4> Pikachu is a cutie<br>
@@ -121,113 +124,11 @@
             </form>
             <a id="title_page">
                 <img src="assets/images/pokeball_trans.png" width="40%">
-                
                 <button type="button" id="startQuiz" class="btn btn-warning">Click to Begin</button>
             </a>
-            <!-- <button >Click to Begin</button> -->
         </div>
     </div>
-    <script>
-        var time = 60;
-        var unanswerCount = 0;
-        var correctCount = 0
-
-        $(document).ready(function () {
-            // intervalId = setInterval(count, 1000);
-            // setTimeout(userTimeOut, 1000 * 200);
-            $("form").hide();
-
-
-
-            function count() {
-                time--;
-                //console.log("1: " + intervalId);
-                $("#countDownTimer").text(time);
-                if (time < 1) {
-                    clearInterval(intervalId);
-
-                }
-            }
-            function answerKey() {
-                if ($("input[name=Q1]:checked").val() === "2") {
-                    correctCount++;
-                }
-                if ($("input[name=Q2]:checked").val() === "4") {
-                    correctCount++;
-                }
-                if ($("input[name=Q3]:checked").val() === "1") {
-                    correctCount++;
-                }
-                if ($("input[name=Q4]:checked").val() === "4") {
-                    correctCount++;
-                }
-                if ($("input[name=Q5]:checked").val() === "2") {
-                    correctCount++;
-                }
-                if ($("input[name=Q6]:checked").val() === "3") {
-                    correctCount++;
-                }
-                if ($("input[name=Q7]:checked").val() === "1") {
-                    correctCount++;
-                }
-                if ($("input[name=Q8]:checked").val() === "4") {
-                    correctCount++;
-                }
-                if ($("input[name=Q9]:checked").val() === "4") {
-                    correctCount++;
-                }
-                if ($("input[name=Q10]:checked").val() === "2") {
-                    correctCount++;
-                }
-                return correctCount;
-            }
-
-            function unanswerKey() {
-                //check for unaswered questions
-                $('.answerClass').each(function () {
-                    if (!$(this).find('input').is(':checked')) {
-                        unanswerCount++;
-                    }
-
-                });
-                return unanswerCount;
-            }
-
-            function userTimeOut() {
-                answerKey();
-                unanswerKey();
-                var incorrectTotal = (10 - correctCount - unanswerCount);
-                //go to results page
-                $("form").hide();
-                $("#correctAnswers").html("Correct: " + correctCount);
-                $("#incorrectAnswers").html("Incorrect: " + incorrectTotal);
-                $("#unAnswers").html("Unanswered: " + unanswerCount);
-
-
-            }
-            $("#submit-button").on("click", function () {
-                clearInterval(intervalId);
-                $("#countDownTimer").hide();
-                answerKey();
-                unanswerKey();
-                var incorrectTotal = (10 - correctCount - unanswerCount);
-                //go to results page
-                $("form").hide();
-                $("#correctAnswers").html("Correct: " + correctCount);
-                $("#incorrectAnswers").html("Incorrect: " + incorrectTotal);
-                $("#unAnswers").html("Unanswered: " + unanswerCount);
-
-            });
-            $("#startQuiz").on("click", function () {
-                $("form").show();
-                $("#startQuiz").hide();
-                intervalId = setInterval(count, 1000);
-                setTimeout(userTimeOut, 1000 * 60);
-
-            });
-
-        });
-    </script>
+    <script src="assets/javascript/app.js"> </script>
 </body>
 
 </html>
